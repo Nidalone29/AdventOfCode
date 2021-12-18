@@ -3,6 +3,7 @@
 #include <sstream>
 #include <queue>
 #include <array>
+//TODO possible refactoring
 
 typedef std::array<std::array<int, 5>, 5> player_card;
 
@@ -22,7 +23,7 @@ bool checkplayerwin(const player_card& card)
 {
 	int complete_column = 0;
 	int complete_row = 0;
-	//check complete rows
+	//check complete rows and columns
 	for (int i = 0; i < card.size(); ++i) {
 		for (int j = 0; j < card[i].size(); ++j) {
 			if (card[i][j] == -1)
@@ -38,23 +39,29 @@ bool checkplayerwin(const player_card& card)
 	return false;
 }
 
-player_card playgame(std::vector<player_card>& boards, int guess)
+bool playgame(std::vector<player_card>& boards, int guess)
 {
 	for (int x = 0; x < boards.size(); ++x) {
+		std::cout << "current x: " << x << std::endl;
 		for (int i = 0; i < boards[x].size(); ++i) {
 			for (int j = 0; j < boards[x][i].size(); ++j) {
 				if (boards[x][i][j] == guess) {
 					boards[x][i][j] = -1;
 					if (checkplayerwin(boards[x])) {
-						return boards[x];
+						if (boards.size() > 1) {
+							//eliminated winning board
+							boards.erase(boards.begin() + x);
+							x--;
+						}
+						else
+							//when the last board wins
+							return true;
 					}
 				}
 			}
 		}
 	}
-	player_card lost;
-	lost.fill({ {0, 0, 0, 0, 0} });
-	return lost;
+	return false;
 }
 
 int main()
@@ -109,19 +116,24 @@ int main()
 		infile.close();
 
 		//play the game
-		player_card winner;
-		winner.fill({ {0, 0, 0, 0, 0} });
-
 		bool gamewon = false;
 		while (!random_num.empty() && !gamewon) {
-			winner = playgame(boards, random_num.front());
-			if (winner[0][0] != 0) {
+			if (playgame(boards, random_num.front())) {
 				gamewon = true;
-				int result = computesolution(winner, random_num.front());
+				int result = computesolution(boards[0], random_num.front());
+				std::cout << "---WINNER---" << std::endl;
+				for (int a = 0; a < boards[0].size(); ++a) {
+					for (int b = 0; b < boards[0][a].size(); ++b) {
+						std::cout << boards[0][a][b] << " ";
+					}
+					std::cout << std::endl;
+				}
 				std::cout << "game won at " << random_num.front() << std::endl;
 				std::cout << "the final result is " << result << std::endl;
 			}
-			random_num.pop();
+			else {
+				random_num.pop();
+			}
 		}
 	}
 	else
