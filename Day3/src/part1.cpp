@@ -16,14 +16,12 @@ int binary_to_decimal(const std::string& input)
 int main()
 {
 	std::ifstream infile("input.txt");
-	if (infile)
-	{
+	if (infile) {
 		std::cout << "opened input file" << std::endl;
 		std::string line;
 		std::vector<int> values;
 		bool initialization = false;
-		while (getline(infile, line))
-		{
+		while (getline(infile, line)) {
 			//first iteration
 			if (!initialization) {
 				for (int i = 0; i < line.size(); ++i) {

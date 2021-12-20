@@ -63,15 +63,13 @@ void draw_line(hydrotermal_vent& ht, cartesian_plane& of)
 int main()
 {
 	std::ifstream infile("input.txt");
-	if (infile)
-	{
+	if (infile) {
 		std::cout << "opened input file" << std::endl;
 		std::string line;
 		std::cmatch match;
 		std::regex regex_hydrotermal_vents(R"(([\d]*),([\d]*) -> ([\d]*),([\d]*))");
 		std::vector<hydrotermal_vent> hydrotermal_vents;
-		while (getline(infile, line))
-		{
+		while (getline(infile, line)) {
 			std::regex_match(line.c_str(), match, regex_hydrotermal_vents);
 			//x1, y1 -> x2, y2
 			if (match.size() > 0) {

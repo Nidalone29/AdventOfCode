@@ -29,8 +29,7 @@ int binary_to_decimal(const std::string& input)
 int main()
 {
 	std::ifstream infile("input.txt");
-	if (infile)
-	{
+	if (infile) {
 		std::cout << "opened input file" << std::endl;
 
 		//the report of the submarine
@@ -41,8 +40,7 @@ int main()
 
 		//grabbing the input into a dynamic list
 		std::string line;
-		while (getline(infile, line))
-		{
+		while (getline(infile, line)) {
 			oxygen.push_back(line);
 			co2.push_back(line);
 		}

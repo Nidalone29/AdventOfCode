@@ -42,7 +42,6 @@ bool checkplayerwin(const player_card& card)
 bool playgame(std::vector<player_card>& boards, int guess)
 {
 	for (int x = 0; x < boards.size(); ++x) {
-		std::cout << "current x: " << x << std::endl;
 		for (int i = 0; i < boards[x].size(); ++i) {
 			for (int j = 0; j < boards[x][i].size(); ++j) {
 				if (boards[x][i][j] == guess) {
@@ -67,8 +66,7 @@ bool playgame(std::vector<player_card>& boards, int guess)
 int main()
 {
 	std::ifstream infile("input.txt");
-	if (infile)
-	{
+	if (infile) {
 		std::cout << "opened input file" << std::endl;
 		std::string line;
 		std::queue<int> random_num;
@@ -77,13 +75,11 @@ int main()
 		//all the players (vector) of cards (array 5x5)
 		player_card card;
 		std::vector<player_card> boards;
-		while (getline(infile, line))
-		{
+		while (getline(infile, line)) {
 			std::stringstream linestream(line);
 			if (counter == 0) {
 				//pushing the random numbers into a queue
-				while (std::getline(linestream, temp_numb, ','))
-				{
+				while (std::getline(linestream, temp_numb, ',')) {
 					random_num.push(stoi(temp_numb));
 				}
 				counter++;
@@ -94,8 +90,7 @@ int main()
 				//new card
 				if (!line.empty()) {
 					//one row
-					while (std::getline(linestream, temp_numb, ' '))
-					{
+					while (std::getline(linestream, temp_numb, ' ')) {
 						if (!temp_numb.empty()) {
 							card[counter - 1][index] = stoi(temp_numb);
 							index++;

@@ -5,13 +5,11 @@
 int main()
 {
 	std::ifstream infile("input.txt");
-	if (infile)
-	{
+	if (infile) {
 		std::cout << "opened input file" << std::endl;
 		std::string line;
 		int current, previous, i = 0, total_incements = 0;
-		while (getline(infile, line))
-		{
+		while (getline(infile, line)) {
 			if (i != 0) {
 				current = std::stoi(line);
 				if (current > previous) {

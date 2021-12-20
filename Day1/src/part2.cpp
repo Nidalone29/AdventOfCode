@@ -7,14 +7,12 @@ int main()
 {
 	std::vector<int> inputs;
 	std::ifstream infile("input.txt");
-	if (infile)
-	{
+	if (infile) {
 		// Filling data structure (dynamic list) with input data
 		std::cout << "opened input file" << std::endl;
 		std::string line;
 		int current, previous, i = 0, total_incements = 0;
-		while (getline(infile, line))
-		{
+		while (getline(infile, line)) {
 			inputs.push_back(std::stoi(line));
 		}
 		infile.close();

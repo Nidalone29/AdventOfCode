@@ -4,8 +4,7 @@
 int main()
 {
 	std::ifstream infile("input.txt");
-	if (infile)
-	{
+	if (infile) {
 		std::cout << "opened input file" << std::endl;
 		std::string line;
 		//submarine parameters
@@ -13,8 +12,7 @@ int main()
 		//parsed input parameters
 		std::string direction;
 		int int_value;
-		while (getline(infile, line))
-		{
+		while (getline(infile, line)) {
 			direction = line.substr(0, line.find(' '));
 			int_value = std::stoi(line.substr(line.find(' '), '\n'));
 			if (direction == "forward") {
