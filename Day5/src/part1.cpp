@@ -34,6 +34,7 @@ struct hydrotermal_vent {
 
 	}
 };
+
 void draw_line(hydrotermal_vent& ht, cartesian_plane& of)
 {
 	//check for the possible swapped point
@@ -60,6 +61,7 @@ void draw_line(hydrotermal_vent& ht, cartesian_plane& of)
 		}
 	}
 }
+
 int main()
 {
 	std::ifstream infile("input.txt");
