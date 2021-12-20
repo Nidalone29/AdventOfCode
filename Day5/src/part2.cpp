@@ -3,6 +3,7 @@
 #include <string>
 #include <regex>
 #include <array>
+#include <cmath>
 
 struct cartesian_plane {
 	//kinda "cheating" that i am assuming the grid size at 1000...
@@ -34,13 +35,15 @@ struct hydrotermal_vent {
 
 	}
 };
+
 void draw_line(hydrotermal_vent& ht, cartesian_plane& of)
 {
 	//check for the possible swapped point
 	//i do this so i have to write half of the for loops
 	int rise = ht.p2.y - ht.p1.y;
 	int run = ht.p2.x - ht.p1.x;
-	if ((run < 0 && rise == 0) || (run == 0 && rise < 0)) {
+	if ((run < 0 && rise == 0) || (run == 0 && rise < 0) ||
+		(rise < 0 && run < 0) || (rise > 0 && run < 0)) {
 		std::swap(ht.p1, ht.p2);
 	}
 	//recompute rise and run
@@ -49,17 +52,42 @@ void draw_line(hydrotermal_vent& ht, cartesian_plane& of)
 
 	//undefined slope -- vertical line
 	if (run == 0 /*&& any rise*/) {
+		std::cout << "undefined slope () " << std::endl;
 		for (int i = ht.p1.y; i <= ht.p2.y; ++i) {
 			of.plane[ht.p1.x][i]++;
 		}
 	}
 	//zero slope (0) -- horizontal line
 	else if (rise == 0) {
+		std::cout << "zero slope (0) " << std::endl;
 		for (int i = ht.p1.x; i <= ht.p2.x; ++i) {
 			of.plane[i][ht.p1.y]++;
 		}
 	}
+	//positive slope (+1 because only 45deg) (both x and y increments)
+	else if (rise > 0 && run > 0) {
+		std::cout << "positive slope (+1) " << run << std::endl;
+		int x = ht.p1.x;
+		int y = ht.p1.y;
+		for (int i = 0; i <= run; i++) {
+			of.plane[x][y]++;
+			x++;
+			y++;
+		}
+	}
+	//negative slope (-1 because only 45deg) (x increments and y decrements)
+	else if (rise < 0 && run > 0) {
+		std::cout << "negative slope (-1) " << run << std::endl;
+		int x = ht.p1.x;
+		int y = ht.p1.y;
+		for (int i = 0; i <= run; i++) {
+			of.plane[x][y]++;
+			x++;
+			y--;
+		}
+	}
 }
+
 int main()
 {
 	std::ifstream infile("input.txt");
