@@ -69,7 +69,7 @@ void draw_line(hydrotermal_vent& ht, cartesian_plane& of)
 		std::cout << "positive slope (+1) " << run << std::endl;
 		int x = ht.p1.x;
 		int y = ht.p1.y;
-		for (int i = 0; i <= run; i++) {
+		for (int i = 0; i <= run; ++i) {
 			of.plane[x][y]++;
 			x++;
 			y++;
@@ -80,7 +80,7 @@ void draw_line(hydrotermal_vent& ht, cartesian_plane& of)
 		std::cout << "negative slope (-1) " << run << std::endl;
 		int x = ht.p1.x;
 		int y = ht.p1.y;
-		for (int i = 0; i <= run; i++) {
+		for (int i = 0; i <= run; ++i) {
 			of.plane[x][y]++;
 			x++;
 			y--;
