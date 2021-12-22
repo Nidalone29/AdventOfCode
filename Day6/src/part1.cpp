@@ -6,16 +6,13 @@
 
 void updatestate(std::vector<int>& lanternfishes)
 {
-	int newfishes = 0;
-	for (int i = 0; i < lanternfishes.size(); ++i) {
+	int currentfishes = lanternfishes.size();
+	for (int i = 0; i < currentfishes; ++i) {
 		lanternfishes[i]--;
 		if (lanternfishes[i] == -1) {
 			lanternfishes[i] = 6;
-			newfishes++;
+			lanternfishes.push_back(8);
 		}
-	}
-	for (int i = 0; i < newfishes; ++i) {
-		lanternfishes.push_back(8);
 	}
 }
 
