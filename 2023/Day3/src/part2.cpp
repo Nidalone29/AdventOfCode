@@ -19,7 +19,8 @@ int main() {
     const int width = input[0].size();
     const int height = input.size();
 
-    // idk why does this work?
+    // idk why does this work? (this takes fucking 0.4MB of space)
+    // TODO find a better way
     std::vector<int> stars[width][height];
 
     for (int i = 0; i < height; i++) {
@@ -60,6 +61,7 @@ int main() {
       }
     }
     std::cout << sum << std::endl;
+    std::cin.get();
     infile.close();
   } else {
     std::cerr << "unable to open input file" << std::endl;
