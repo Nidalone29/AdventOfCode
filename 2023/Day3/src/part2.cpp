@@ -62,7 +62,6 @@ int main() {
     }
 
     std::cout << sum << std::endl;
-    std::cin.get();
     infile.close();
   } else {
     std::cerr << "unable to open input file" << std::endl;
