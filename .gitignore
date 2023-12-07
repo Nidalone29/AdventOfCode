@@ -3,3 +3,6 @@
 
 *.txt
 /.vscode
+
+**/.vscode
+**/build
