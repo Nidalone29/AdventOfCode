@@ -76,7 +76,7 @@ class Hand {
   void find_type() {
     std::map<char, int> cards_count;
     for (const char x : _cards) {
-      const auto [it_hinata, success] = cards_count.insert({x, 1});
+      const auto [_, success] = cards_count.insert({x, 1});
       if (!success) {
         cards_count[x]++;
       }
