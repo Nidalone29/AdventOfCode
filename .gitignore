@@ -3,6 +3,7 @@
 
 *.txt
 /.vscode
+/.idea
 
 **/.vscode
 **/build
